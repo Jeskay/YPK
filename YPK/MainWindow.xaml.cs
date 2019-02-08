@@ -27,7 +27,13 @@ namespace YPK
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            string Input = TextBox_Input.Text.Trim(' ');
+            Int32 a, b, c;
+            for (Int32 i = 0; i < Input.Length; i++)
+            {
+                if(Input[i] != 'x' && Input[i + 1] == '^' && Input[i + 2] == '2') a = Input.Split
+            }
+           if()
         }
     }
 }

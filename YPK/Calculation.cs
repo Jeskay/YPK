@@ -10,6 +10,25 @@ namespace YPK
     {
         public void Calculate(Int64 a, Int64 b, Int64 c)
         {
+            if (a == 0 && b == 0)
+            {
+                Abequation = false;
+                return;
+            }
+            if (a == 0)
+            {
+                answer1 = c / (double)b;
+                answer2 = 0;
+                Abequation = true;
+                return;
+            }
+            else if (b == 0)
+            {
+                answer1 = Math.Sqrt(c/a);
+                answer2 = answer1 * (-1);
+                Abequation = true;
+                return;
+            }
             double Desc = Math.Sqrt( b * b - a * c * 4.0);
             if (Desc > 0)
             {
