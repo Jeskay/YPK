@@ -8,8 +8,14 @@ namespace YPK
 {
     public class Calculation
     {
-        public void Calculate(Int64 a, Int64 b, Int64 c)
+        private Int64 aparameter;
+        private Int64 bparameter;
+        private Int64 cparameter;
+        public void Calculate()
         {
+           Int64 a = aparameter;
+           Int64 b = bparameter;
+           Int64 c = cparameter;
             double Desc = Math.Sqrt( b * b - a * c * 4.0);
             if (Desc > 0)
             {
@@ -32,6 +38,41 @@ namespace YPK
         public double answer2
         {
             get; set;
+        }
+        public Int64 Aparemeter
+        {
+            get
+            {
+                return aparameter;
+            }
+            set
+            {
+                aparameter = value;
+            }
+        }
+
+        public Int64 Bparemeter
+        {
+            get
+            {
+                return bparameter;
+            }
+            set
+            {
+                bparameter = value;
+            }
+        }
+
+        public Int64 Cparemeter
+        {
+            get
+            {
+                return cparameter;
+            }
+            set
+            {
+                cparameter = value;
+            }
         }
         public bool Abequation
         {
