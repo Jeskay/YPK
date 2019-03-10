@@ -16,6 +16,24 @@ namespace YPK
            Int64 a = aparameter;
            Int64 b = bparameter;
            Int64 c = cparameter;
+            if (b == 0)
+            {
+                answer1 = Math.Sqrt(c / a);
+                answer2 = answer1 * (-1);
+                return;
+            }
+            if (a == 0)
+            {
+                answer1 = c / b;
+                answer2 = 0;
+                return;
+            }
+            if (c == 0)
+            {
+                answer1 = 0;
+                answer2 = b / a;
+                return;
+            }
             double Desc = Math.Sqrt( b * b - a * c * 4.0);
             if (Desc > 0)
             {

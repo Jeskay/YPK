@@ -26,16 +26,6 @@ namespace YPK
             InitializeComponent();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void Calc_TextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-           
-        }
-
         private void Calc_TextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
@@ -43,13 +33,15 @@ namespace YPK
                 String number = "";
                 Int16 Coefficient = 1;
                 String S = Calc_TextBox.Text;
-                for (Int32 i = 0; i < S.Length - 2; i++)
+                for (Int32 i = 0; i < S.Length - 1; i++)
                 {
 
                     if (S[i] == 'x')
                     {
+                        if (number == "") number = "1";
                         if (S[i + 1] == '^' && S[i + 2] == '2')
                         {
+                           
                             calc.Aparemeter = Convert.ToInt64(number) * Coefficient;
                             i += 2;
                             number = "";
@@ -57,17 +49,16 @@ namespace YPK
                         else
                         {
                             calc.Bparemeter = Convert.ToInt64(number) * Coefficient;
-                            i++;
                             number = "";
                         }
                     }
-                    else if (S[i] == '-')
+                    else if (S[i] == '-' || S[i] == '=')
                     {
                         if (number != "") calc.Cparemeter = Convert.ToInt64(number) * Coefficient;
                         Coefficient = -1;
                         number = "";
                     }
-                    else if (S[i] == '+' && number != "")
+                    else if (S[i] == '+')
                     {
                         if (number != "") calc.Cparemeter = Convert.ToInt64(number) * Coefficient;
                         Coefficient = 1;
@@ -81,6 +72,11 @@ namespace YPK
                 calc.Calculate();
                 Result_Label.Content = "x1= " + calc.answer1 + '\n' + "x2= " + calc.answer2;
             }
+        }
+
+        private void Calc_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
