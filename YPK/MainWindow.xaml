@@ -8,7 +8,7 @@
         Title="MainWindow" Height="350" Width="525">
     <Grid>
         <TextBox x:Name="Calc_TextBox" HorizontalAlignment="Left" Height="50" Margin="79,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="323" TextChanged="Calc_TextBox_TextChanged" KeyDown="Calc_TextBox_KeyDown"/>
-        <Label x:Name="Result_Label" Content="" HorizontalAlignment="Left" Height="79" Margin="79,128,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label x:Name="Result_Label" Content="" HorizontalAlignment="Left" Height="79" Margin="79,128,0,0" VerticalAlignment="Top" Width="183"/>
 
     </Grid>
 </Window>
