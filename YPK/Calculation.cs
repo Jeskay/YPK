@@ -15,23 +15,32 @@ namespace YPK
         public string Answer(string Data)
         {
             String number = "";
+            string answer;
             Int32 Coefficient = 1;
             Int32 DCoefficeient = 1;
             String S = Data;
-            for (Int32 i = 0; i < S.Length; i++)
+            try
             {
-
-                if (S[i] == 'x')
+                for (Int32 i = 0; i < S.Length; i++)
                 {
-                    if (number == "") number = "1";
-                    if (i + 2 < S.Length)
-                    {
-                        if (S[i + 1] == '^' && S[i + 2] == '2')
-                        {
 
-                            Aparemeter += Convert.ToDouble(number) * Coefficient;
-                            i += 2;
-                            number = "";
+                    if (S[i] == 'x')
+                    {
+                        if (number == "") number = "1";
+                        if (i + 2 < S.Length)
+                        {
+                            if (S[i + 1] == '^' && S[i + 2] == '2')
+                            {
+
+                                Aparemeter += Convert.ToDouble(number) * Coefficient;
+                                i += 2;
+                                number = "";
+                            }
+                            else
+                            {
+                                Bparemeter += Convert.ToDouble(number) * Coefficient;
+                                number = "";
+                            }
                         }
                         else
                         {
@@ -39,37 +48,37 @@ namespace YPK
                             number = "";
                         }
                     }
-                    else
+                    else if (S[i] == '-')
                     {
-                        Bparemeter += Convert.ToDouble(number) * Coefficient;
+                        if (number != "") Cparemeter += Convert.ToDouble(number) * Coefficient;
+                        Coefficient = -1 * DCoefficeient;
                         number = "";
                     }
+                    else if (S[i] == '+' || S[i] == '=')
+                    {
+                        if (S[i] == '=') DCoefficeient = -1;
+                        if (number != "") Cparemeter += Convert.ToDouble(number) * Coefficient;
+                        Coefficient = 1 * DCoefficeient;
+                        number = "";
+                    }
+                    else number += S[i];
                 }
-                else if (S[i] == '-')
-                {
-                    if (number != "") Cparemeter += Convert.ToDouble(number) * Coefficient;
-                    Coefficient = -1 * DCoefficeient;
-                    number = "";
-                }
-                else if (S[i] == '+' || S[i] == '=')
-                {
-                    if (S[i] == '=') DCoefficeient = -1;
-                    if (number != "") Cparemeter += Convert.ToDouble(number) * Coefficient;
-                    Coefficient = 1 * DCoefficeient;
-                    number = "";
-                }
-                else number += S[i];
+                if (number != "") Cparemeter += Convert.ToDouble(number) * Coefficient;
             }
-            if (number != "") Cparemeter += Convert.ToDouble(number) * Coefficient;
-
+            catch (Exception ex)
+            {
+                answer = "некорректный ввод";
+                return answer;
+            }
             Console.WriteLine("A= " + Aparemeter);
             Console.WriteLine("B= " + Bparemeter);
             Console.WriteLine("C= " + Cparemeter);
             Calculate();
             
-            string answer = "уравнение имеет " + roots + " корней" + '\n';
+            answer = "уравнение имеет " + roots + " корней" + '\n';
             if (roots == 1) answer += "x= " + answer1;
             else if (roots == 2) answer += "x1= " + answer1 + '\n' + "x2= " + answer2;
+
             return answer;
         }
         public void Calculate()
